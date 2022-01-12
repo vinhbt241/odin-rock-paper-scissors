@@ -1,64 +1,76 @@
 const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 const MAXPOINT = 5;
 
+const buttons = document.querySelectorAll(".choices");
+const player = document.querySelector("#player");
+const computer = document.querySelector("#computer");
+const message = document.querySelector("#message");
+const score = document.querySelector("#score");
+const finalResult = document.querySelector("#final-result");
+
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay() {
     return CHOICES[Math.floor(Math.random() * CHOICES.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toUpperCase();
-    console.log(`Your choice is ${playerSelection}`);
-    console.log(`Your Opponent's choice is ${computerSelection}`);
+    player.textContent = `Your choice is ${playerSelection}`;
+    computer.textContent = `Computer's choice is ${computerSelection}`;
     if (playerSelection === computerSelection) {
-        return(["Tie Game!", 0]);
+        message.textContent = "Tie Game!";
+        return 0;
     }
     if (playerSelection === "ROCK") {
         if(computerSelection === "PAPER") {
-            return(["You Lose! Paper beats Rock", -1]);
+            message.textContent = "You Lose! Paper beats Rock";
+            return -1;
         } else {
-            return(["You Win! Rock beats Scissors", 1]);
+            message.textContent = "You Win! Rock beats Scissors";
+            return 1;
         }
     }
     if (playerSelection === "PAPER") {
         if(computerSelection === "SCISSORS") {
-            return(["You Lose! Scissors beats Paper", -1]);
+            message.textContent = "You Lose! Scissors beats Paper";
+            return -1;
         } else {
-            return(["You Win! Paper beats Rock", 1]);
+            message.textContent = "You Win! Paper beats Rock"
+            return 1;
         }
     }
     if (playerSelection === "SCISSORS") {
         if(computerSelection === "ROCK") {
-            return(["You Lose! Rock beats Scissors", -1]);
+            message.textContent = "You Lose! Rock beats Scissors";
+            return -1;
         } else {
-            return(["You Win! Scissors beats Paper", 1]);
+            message.textContent = "You Win! Scissors beats Paper"
+            return 1;
         }
     }
 }
 
-function game() {
-    let i = 1;
-    let playerScore = 0;
-    let computerScore = 0;
-    while(playerScore < MAXPOINT && computerScore < MAXPOINT) {
-        let playerSelection = prompt("Type your choice here:");
-        let computerSelection = computerPlay();
-        console.log(`Round ${i}`);
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result[0]);
-        if (result[1] == 0) {
-            console.log("Replay the round...");
-            i--;
-        } else if (result[1] == 1) {
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        result = playRound(button.id, computerPlay());
+        if (result == 1) {
             playerScore += 1;
-        } else if (result[1] == -1) {
+        } else if (result == -1) {
             computerScore += 1;
-        } 
-        i++;
-    }
-    console.log(`Here come the final score!\nPlayer Score: ${playerScore}\nComputer Score: ${computerScore}`);
-    if (playerScore > computerScore) {
-        console.log("You win the game!");
-    } else {
-        console.log("You lose :(");
-    }
-}
+        }
+        score.textContent = `Player's score: ${playerScore} | Computer's score: ${computerScore}`
+        if (playerScore >= MAXPOINT || computerScore >= MAXPOINT) {
+            finalResult.textContent = "";
+            if (playerScore > computerScore) {
+                finalResult.textContent = "You won!";
+            } else {
+                finalResult.textContent ="You lose!";
+            }
+        }
+    })
+})
+
+
