@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffea00;
+    color: #302e2e;
+}
+
+#container {
+    width: 70%;
+    height: 90%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+#score {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+#choices-container {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    padding-left: 85px;
+}
+
+#btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#choices-container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#choices-container h2 {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 24px;
+}
+
+.choices {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+#reset {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+#result {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#choice-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#player-message,
+#computer-message {
+    background-color: greenyellow;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #302e2e;
+    border-radius: 5px;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-container h2 {
+    font-size: 24px;
+}
+    
+    

@@ -2,14 +2,12 @@ const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 const MAXPOINT = 5;
 
 const buttons = document.querySelectorAll(".choices");
-const player = document.querySelector("#player");
-const computer = document.querySelector("#computer");
+const playerScore = document.querySelector("#score #player-score h2");
+const computerScore = document.querySelector("#score #computer-score h2");
+const buttonReset = document.querySelector("#reset");
+const playerMessage = document.querySelector("#player-message");
+const computerMessage = document.querySelector("#computer-message");
 const message = document.querySelector("#message");
-const score = document.querySelector("#score");
-const finalResult = document.querySelector("#final-result");
-
-let playerScore = 0;
-let computerScore = 0;
 
 function computerPlay() {
     return CHOICES[Math.floor(Math.random() * CHOICES.length)];
@@ -17,8 +15,8 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toUpperCase();
-    player.textContent = `Your choice is ${playerSelection}`;
-    computer.textContent = `Computer's choice is ${computerSelection}`;
+    playerMessage.textContent = `Your choice is ${playerSelection}`;
+    computerMessage.textContent = `Computer's choice is ${computerSelection}`;
     if (playerSelection === computerSelection) {
         message.textContent = "Tie Game!";
         return 0;
@@ -52,25 +50,42 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function updateScore(result) {
+    if (result == 1) {
+        playerScore.textContent = Number(playerScore.textContent) + 1;
+    } else if (result == -1) {
+        computerScore.textContent = Number(computerScore.textContent) + 1;
+    }
+}
+
+function checkWin() {
+    if (Number(playerScore.textContent) >=5 || Number(computerScore.textContent) >= 5) {
+        buttons.forEach(button => button.disabled = true);
+        if (Number(playerScore.textContent) > Number(computerScore.textContent)) {
+            message.textContent = "Congratulation, you won the game!";
+        } else {
+            message.textContent = "Oops, you lost, maybe next time?";
+        }
+    }
+}
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        result = playRound(button.id, computerPlay());
-        if (result == 1) {
-            playerScore += 1;
-        } else if (result == -1) {
-            computerScore += 1;
-        }
-        score.textContent = `Player's score: ${playerScore} | Computer's score: ${computerScore}`
-        if (playerScore >= MAXPOINT || computerScore >= MAXPOINT) {
-            finalResult.textContent = "";
-            if (playerScore > computerScore) {
-                finalResult.textContent = "You won!";
-            } else {
-                finalResult.textContent ="You lose!";
-            }
-        }
+        const result = playRound(button.id, computerPlay());
+        updateScore(result);
+        checkWin();
     })
 })
+
+buttonReset.addEventListener("click", () => {
+    buttons.forEach(button => button.disabled = false);
+    playerScore.textContent = 0;
+    computerScore.textContent = 0;
+    playerMessage.textContent = "";
+    computerMessage.textContent = "";
+    message.textContent = "Make your move...";
+})
+
+
 
 

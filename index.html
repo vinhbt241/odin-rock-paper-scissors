@@ -6,20 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div id="container">
-        <button class="choices" id="rock">Rock</button>
-        <button class="choices" id="paper">Paper</button>
-        <button class="choices" id="scissors">Scissors</button>
+        <div id="score">
+            <div id="player-score">
+                <h2>0</h2>
+                <p>Player's score</p>
+            </div>
+            <div id="computer-score">
+                <h2>0</h2>
+                <p>Computer's score</p>
+            </div>
+        </div>
+        <div id="choices-container">
+            <div>
+                <button class="choices" id="rock">Rock</button>
+                <h2>Rock</h2>
+            </div>
+            <div>
+                <button class="choices" id="paper">Paper</button>
+                <h2>Paper</h2>
+            </div>
+            <div>
+                <button class="choices" id="scissors">Scissors</button>
+                <h2>Scissors</h2>
+            </div>
+            <div>
+                <button id = "reset">Reset</button>
+                <h2>Reset</h2>
+            </div>
+        </div>
         <div id="result">
-            <p>Make your move:</p>
-            <p id="player"></p>
-            <p id="computer"></p>
-            <p id="message"></p>
-            <p id="score">Player's score: 0 | Computer's score: 0</p>
-            <p id="final-result"></p>
+            <div id="choice-message">
+                <div class="message-container">
+                    <div id="player-message"></div>
+                    <h2>Player</h2>
+                </div>
+                <div class="message-container">
+                    <div id="computer-message"></div>
+                    <h2>Computer</h2>
+                </div>
+            </div>
+            <p id="message">Make your move...</p>
         </div>
     </div>
 </body>
