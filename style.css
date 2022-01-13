@@ -60,16 +60,30 @@ body {
     font-size: 24px;
 }
 
+button {
+    font-size: 24px;
+}
+
+button:disabled {
+    background-color: #706c3e;
+}
+
 .choices {
     width: 200px;
     height: 200px;
     border-radius: 5px;
+    border: 2px solid #302e2e;
+    background-color: #ffea00;
+    color: #302e2e;
 }
 
 #reset {
     width: 100px;
     height: 100px;
     border-radius: 5px;
+    border: 2px solid #302e2e;
+    background-color: #ffea00;
+    color: #302e2e;
 }
 
 #result {
@@ -90,7 +104,10 @@ body {
 
 #player-message,
 #computer-message {
-    background-color: greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     width: 200px;
     height: 200px;
     border: 2px solid #302e2e;
